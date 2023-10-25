@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// #region Models
+model Users {
+  id              String   @id @default(uuid()) @map("_id")
+  email           String   @unique
+  username        String   @unique
+  password        String
+  profile_picture String?
+  profile_banner  String?
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+}
+
+// #endregion
